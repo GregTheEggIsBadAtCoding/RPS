@@ -4,21 +4,33 @@ using UnityEngine;
 using UnityEngine.UI;
 public class enemyScript : MonoBehaviour
 {
-    Interact inter;
+    [SerializeField] Interact inter;
     int random;
-    int[] combo;
+    public int[] combo = new int[3];
     public int health;
+    int counter = 0;
+    int buff = 0;
+    int damageActive = 0;
     [SerializeField] Text text;
     void Start()
     {
-        inter = FindObjectOfType<Interact>();
         // This is just for grabbing variables from the Interact script
         text.text = health.ToString();
+        
+    }
+    void healthChange(int eHealth, int pHealth){
+        inter.health = inter.health - pHealth;
+        health = health - (eHealth + (buff * damageActive));
+        text.text = health.ToString();
+    }
+    void buffStart(){
+        damageActive = 1;
+        buff = 3;
+
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         if (inter.value > 0){
             random = Random.Range(1,4);
             string result = (inter.value, random) switch
@@ -30,12 +42,34 @@ public class enemyScript : MonoBehaviour
             };
             Debug.Log("Player picked " + inter.value + " and AI picked " + random + " the result is a " + result);
             if (result == "win"){
-                health--;
-                text.text = health.ToString();
+                healthChange(3,1);
             }  else if (result == "lose"){
-                inter.health--;
+                healthChange(1,3);
+            } else {
+                healthChange(2,2);
             }
+            if (damageActive == 1){
+                buff--;
+            }
+            /*
+                                          FIXING THIS LATER, DON'T TOUCH PLEASE THANKS
+            combo[counter] = inter.value;
+            if (counter == 3){
+            int result2 = (combo[1], combo[2], combo[3]) switch {
+                (1,2,1) => 1,
+                (2,2,3) => 2,
+                (2,1,3) => 3,
+                _ => 0
+            }; 
+            if (result2 == 1){
+                buffStart();
+                counter = 0;
+            } else {
+                counter = 0;
+            }
+            */
+        }
+            counter++;
             inter.value = 0;
         }
     }
-}
