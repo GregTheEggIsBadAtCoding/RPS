@@ -19,9 +19,9 @@ public class ButtonMain : MonoBehaviour
         
     }
 
-    public void StartGame()
+    public void StartGame(string Name)
     {
-        SceneManager.LoadScene("[namegoes here]");
+        SceneManager.LoadScene(Name);
 
     }
 
