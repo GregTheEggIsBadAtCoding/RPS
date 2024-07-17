@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class enemyScript : MonoBehaviour
 {
     [SerializeField] Interact inter;
@@ -24,7 +25,6 @@ public class enemyScript : MonoBehaviour
     }
     void healthChange(int eHealth, int pHealth){
         inter.health = inter.health - pHealth;
-
         health = health - (eHealth + (2 * damageActive));
         text.text = health.ToString();
         inter.playerHealthBar();
@@ -34,11 +34,13 @@ public class enemyScript : MonoBehaviour
         Debug.Log("damage+ buff active");
         damageActive = 1;
         buff = 2;
-
     }
 
     // Update is called once per frame
     void Update(){
+        if (health <= 0){
+            SceneManager.LoadScene("EndScene");
+        }
         if (inter.value > 0){
             random = Random.Range(1,4);
             string result = (inter.value, random) switch
