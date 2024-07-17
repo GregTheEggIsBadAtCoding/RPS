@@ -24,14 +24,16 @@ public class enemyScript : MonoBehaviour
     }
     void healthChange(int eHealth, int pHealth){
         inter.health = inter.health - pHealth;
-        health = health - (eHealth + (buff * damageActive));
+
+        health = health - (eHealth + (2 * damageActive));
         text.text = health.ToString();
         inter.playerHealthBar();
         enemyHealthBar();
     }
-    void buffStart(){
+    void damageBuffStart(){
+        Debug.Log("damage+ buff active");
         damageActive = 1;
-        buff = 3;
+        buff = 2;
 
     }
 
@@ -54,27 +56,32 @@ public class enemyScript : MonoBehaviour
             } else {
                 healthChange(2,2);
             }
-            if (damageActive == 1){
+            if (damageActive == 1 && buff > 0){
                 buff--;
-            }
-            /*
-                                          FIXING THIS LATER, DON'T TOUCH PLEASE THANKS
-            combo[counter] = inter.value;
-            if (counter == 3){
-            int result2 = (combo[1], combo[2], combo[3]) switch {
-                (1,2,1) => 1,
-                (2,2,3) => 2,
-                (2,1,3) => 3,
-                _ => 0
-            }; 
-            if (result2 == 1){
-                buffStart();
-                counter = 0;
+                Debug.Log("Damage buff counter = " + buff);
             } else {
-                counter = 0;
+                Debug.Log("Damage Disabled");
+                damageActive = 0;
             }
-            */
-            counter++;
+            Debug.Log(counter);
+            combo[counter] = inter.value;
+            if (counter == 2){
+                int result2 = (combo[0], combo[1], combo[2]) switch {
+                    (1,2,1) => 1, // Damage buff
+                    (2,2,3) => 2, // Reroll rock
+                    (2,1,3) => 3,
+                    _ => 0
+                }; 
+                Debug.Log(result2);
+                if (result2 == 1 && damageActive != 1){
+                    damageBuffStart();
+                    counter = 0;
+                } else {
+                    counter = 0;
+                }
+            } else {
+                counter++;
+            }
             inter.value = 0;
         }
     }
