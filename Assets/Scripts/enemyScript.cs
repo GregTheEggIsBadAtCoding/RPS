@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class enemyScript : MonoBehaviour
 {
     [SerializeField] Interact inter;
+    [SerializeField] Image healthBar;
     int random;
     public int[] combo = new int[3];
     public int health;
@@ -18,10 +19,15 @@ public class enemyScript : MonoBehaviour
         text.text = health.ToString();
         
     }
+    void enemyHealthBar(){
+        healthBar.fillAmount = (health/100f)*3.3333333333f;
+    }
     void healthChange(int eHealth, int pHealth){
         inter.health = inter.health - pHealth;
         health = health - (eHealth + (buff * damageActive));
         text.text = health.ToString();
+        inter.playerHealthBar();
+        enemyHealthBar();
     }
     void buffStart(){
         damageActive = 1;
@@ -68,8 +74,8 @@ public class enemyScript : MonoBehaviour
                 counter = 0;
             }
             */
-        }
             counter++;
             inter.value = 0;
         }
     }
+}
