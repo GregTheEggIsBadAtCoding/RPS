@@ -619,7 +619,7 @@ GameObject:
   - component: {fileID: 736216843}
   - component: {fileID: 736216842}
   m_Layer: 5
-  m_Name: Text (Legacy) (1)
+  m_Name: EnemyHealth(int)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -744,7 +744,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2ddd635371f24d2439cf90599c96a409, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d8639172ef894654c8cc4f77d2f77ea8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1150,7 +1150,7 @@ GameObject:
   - component: {fileID: 1429297697}
   - component: {fileID: 1429297696}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: PlayerHealth(int)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1716,6 +1716,17 @@ MonoBehaviour:
   value: 0
   health: 30
   text: {fileID: 1429297696}
+  enemy: {fileID: 1583773586}
+  spriteSheet:
+  - {fileID: 21300000, guid: b53af349370afa944be0444d0ddf3195, type: 3}
+  - {fileID: 21300000, guid: b231a682d16509948a3d3eac68b9aa5b, type: 3}
+  - {fileID: 21300000, guid: 10d70356e6cb26149bc04a7c5194ec32, type: 3}
+  - {fileID: 21300000, guid: d8639172ef894654c8cc4f77d2f77ea8, type: 3}
+  - {fileID: 21300000, guid: e329a26d78f9f7e45b3776121ddd2712, type: 3}
+  - {fileID: 21300000, guid: ddd38657459f67047aeef4c6c1326e7a, type: 3}
+  - {fileID: 21300000, guid: 2df5bf2049ac2384f80c348cc4f52d6f, type: 3}
+  - {fileID: 21300000, guid: fa46b287ba7ed8447ad3240f711e7dd8, type: 3}
+  Hero: {fileID: 823953106}
 --- !u!114 &1943020828
 MonoBehaviour:
   m_ObjectHideFlags: 0

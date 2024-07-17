@@ -14,6 +14,7 @@ public class enemyScript : MonoBehaviour
     int buff = 0;
     int damageActive = 0;
     [SerializeField] Text text;
+    [SerializeField] Text playerHealth;
     void Start()
     {
         // This is just for grabbing variables from the Interact script
@@ -26,7 +27,8 @@ public class enemyScript : MonoBehaviour
     void healthChange(int eHealth, int pHealth){
         inter.health = inter.health - pHealth;
         health = health - (eHealth + (2 * damageActive));
-        text.text = health.ToString();
+        text.text = health.ToString() + " -" + eHealth.ToString();
+        playerHealth.text = " -" + pHealth.ToString();
         inter.playerHealthBar();
         enemyHealthBar();
     }
@@ -37,10 +39,15 @@ public class enemyScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update(){
-        if (health <= 0){
+    private void Update()
+    {
+        if (health <= 0)
+        {
             SceneManager.LoadScene("EndScene");
         }
+    }
+    public void enemyAttack(){
+
         if (inter.value > 0){
             random = Random.Range(1,4);
             string result = (inter.value, random) switch
@@ -50,6 +57,9 @@ public class enemyScript : MonoBehaviour
                 (1, 1) or (2, 2) or (3, 3) => "tie",
                 _ => "default case because I hate yellow squiggly lines"
             };
+
+            inter.changePlayerSpriteResult(inter.value, random, result);
+
             Debug.Log("Player picked " + inter.value + " and AI picked " + random + " the result is a " + result);
             if (result == "win"){
                 healthChange(3,1);
@@ -65,6 +75,8 @@ public class enemyScript : MonoBehaviour
                 Debug.Log("Damage Disabled");
                 damageActive = 0;
             }
+
+
             Debug.Log(counter);
             combo[counter] = inter.value;
             if (counter == 2){
