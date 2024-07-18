@@ -9,12 +9,15 @@ public class enemyScript : MonoBehaviour
     [SerializeField] Image healthBar;
     int random;
     public int[] combo = new int[3];
+    int[] comboChoice = new int[3];
     public int health;
     int counter = 0;
     int tempHealth = 0;
     int buff = 0;
     int damageActive = 0;
     int rerollActive = 0;
+    int comboDecision = 0;
+    int choice = 0;
     [SerializeField] Text text;
     [SerializeField] Text playerHealth;
 
@@ -28,6 +31,42 @@ public class enemyScript : MonoBehaviour
     }
     void enemyHealthBar(){
         healthBar.fillAmount = (health/100f)*3.3333333333f;
+    }
+    void arrayPlacement(int a, int aa, int aaa, int[] ar){
+        ar[0] = a;
+        ar[1] = aa;
+        ar[2] = aaa;
+    }
+    public int enemyDecision(){
+        if (choice == 3) {
+            comboDecision = 0;
+        }
+        if (comboDecision == 0){
+            choice = 0;
+            if (health < 20 && tempHealth < 1){
+                comboDecision = 1; // Add temp health
+            } else {
+                int temp = Random.Range(1,3);
+                if (temp == 1){
+                    comboDecision = 2; // Remove Rock
+                } else {
+                    comboDecision = 3; // Damage buff
+                }
+            }
+        }
+        if (comboDecision == 1){
+            arrayPlacement(2,1,3,comboChoice); // health+
+            choice++;
+            return comboChoice[choice-1];
+        } else if (comboDecision == 2){
+            arrayPlacement(2,2,3,comboChoice); // reroll rock
+            choice++;
+            return comboChoice[choice-1];
+        } else{
+            arrayPlacement(1,2,1,comboChoice); // damage
+            choice++;
+            return comboChoice[choice-1];
+        }
     }
     void healthChange(int eHealth, int pHealth){
         if (tempHealth < 1){
@@ -58,7 +97,7 @@ public class enemyScript : MonoBehaviour
     public void enemyAttack(){
 
         if (inter.value > 0){
-            random = Random.Range(1,4);
+            random = enemyDecision();
             if(rerollActive > 0){
                 random = Random.Range(2,4);
                 rerollActive--;
