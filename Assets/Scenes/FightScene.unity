@@ -433,6 +433,7 @@ RectTransform:
   - {fileID: 1733602113}
   - {fileID: 198166451}
   - {fileID: 1198427925}
+  - {fileID: 1498932937}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -782,7 +783,7 @@ GameObject:
   - component: {fileID: 946536435}
   - component: {fileID: 946536434}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: RockButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1071,7 +1072,7 @@ GameObject:
   - component: {fileID: 1389781401}
   - component: {fileID: 1389781400}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: ScissorButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1217,6 +1218,85 @@ RectTransform:
   m_AnchoredPosition: {x: -108, y: 88}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1498932936
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1498932937}
+  - component: {fileID: 1498932939}
+  - component: {fileID: 1498932938}
+  m_Layer: 5
+  m_Name: PlayerMinus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1498932937
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498932936}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.71716, y: 0.71716, z: 0.71716}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 308650989}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -69.5, y: 88.1}
+  m_SizeDelta: {x: 160, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1498932938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498932936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 32
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &1498932939
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498932936}
+  m_CullTransparentMesh: 1
 --- !u!1 &1583773585
 GameObject:
   m_ObjectHideFlags: 0
@@ -1252,6 +1332,13 @@ MonoBehaviour:
   combo: 000000000000000000000000
   health: 30
   text: {fileID: 736216842}
+  playerHealth: {fileID: 1498932938}
+  enemySprites:
+  - {fileID: 21300000, guid: 76aa8d7008b092048a3993ca8d282d86, type: 3}
+  - {fileID: 21300000, guid: 86e68a8c6a679504d9c2368403353f4b, type: 3}
+  - {fileID: 21300000, guid: 1bf9099b3a8a7ab4999592012ef98fab, type: 3}
+  - {fileID: 21300000, guid: 5ca96bbf8d537e1438ef41198f9f7282, type: 3}
+  - {fileID: 21300000, guid: a97b490475963404e84cf59bdaf85299, type: 3}
 --- !u!212 &1583773587
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1464,7 +1551,7 @@ GameObject:
   - component: {fileID: 1786036670}
   - component: {fileID: 1786036669}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: PaperButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1726,6 +1813,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ddd38657459f67047aeef4c6c1326e7a, type: 3}
   - {fileID: 21300000, guid: 2df5bf2049ac2384f80c348cc4f52d6f, type: 3}
   - {fileID: 21300000, guid: fa46b287ba7ed8447ad3240f711e7dd8, type: 3}
+  - {fileID: 21300000, guid: fcab1dd55eb261949b4540460caa187c, type: 3}
+  - {fileID: 21300000, guid: 15f2a3d145aa3564dba169fe6b1149e7, type: 3}
+  - {fileID: 21300000, guid: 246ce59a2cc101d4e91382b7e6c34b3d, type: 3}
   Hero: {fileID: 823953106}
 --- !u!114 &1943020828
 MonoBehaviour:

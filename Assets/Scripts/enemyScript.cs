@@ -15,6 +15,9 @@ public class enemyScript : MonoBehaviour
     int damageActive = 0;
     [SerializeField] Text text;
     [SerializeField] Text playerHealth;
+
+    //sprite stuff
+    public Sprite[] enemySprites;
     void Start()
     {
         // This is just for grabbing variables from the Interact script

@@ -67,12 +67,28 @@ public class Interact : MonoBehaviour
         {
             case ("win"):
                 spriteRenderer.sprite = spriteSheet[7];
+                switch (playerAttack, enemyAttack)
+                {
+                    //Player Rock beats enemy Scissors
+                    case (1, 3):
+                        enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[3];
+                        break;
+                    //Player Paper beats enemy Rock
+                    case (2, 1):
+                        enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[2];
+                        break;
+                    //Player Scissors beats enemy Paper
+                    case (3, 2):
+                        enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[1];
+                        break;
+                }
                 break;
             case ("lose"):
                 switch (playerAttack, enemyAttack)
                 {
                     case (1,2):
                         //enemy Paper beats player Rock
+                        
                         spriteRenderer.sprite = spriteSheet[1];
                         break;
                     case (2,3):
@@ -81,11 +97,13 @@ public class Interact : MonoBehaviour
                         break;
                     case (3,1):
                         //enemy Rock beats player Scissors
+                        enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[4];
                         spriteRenderer.sprite = spriteSheet[2];
                         break;
                 }
                 break;
-            default: 
+            default:
+                enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[0];
                 spriteRenderer.sprite = spriteSheet[3];
                 break;
         }
