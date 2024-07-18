@@ -26,7 +26,6 @@ public class Interact : MonoBehaviour
     void Update(){
         text.text = health.ToString();
         if (health <= 0){
-            // if we add a death animation, we can make it pause here for it to play
             SceneManager.LoadScene("StartMenu");
         }
     }
@@ -34,8 +33,8 @@ public class Interact : MonoBehaviour
         value = valueChange;
         changePlayerSpriteAttack(value);
         StartCoroutine(Waiting());
-        
     }
+
     public void playerHealthBar(){
         healthBar.fillAmount = (health/100f)*3.3333333333f;
     }

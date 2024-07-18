@@ -11,8 +11,10 @@ public class enemyScript : MonoBehaviour
     public int[] combo = new int[3];
     public int health;
     int counter = 0;
+    int tempHealth = 0;
     int buff = 0;
     int damageActive = 0;
+    int rerollActive = 0;
     [SerializeField] Text text;
     [SerializeField] Text playerHealth;
 
@@ -28,15 +30,19 @@ public class enemyScript : MonoBehaviour
         healthBar.fillAmount = (health/100f)*3.3333333333f;
     }
     void healthChange(int eHealth, int pHealth){
-        inter.health = inter.health - pHealth;
+        if (tempHealth < 1){
+            inter.health = inter.health - pHealth;
+            playerHealth.text = " -" + pHealth.ToString();
+        } else {
+            tempHealth = tempHealth - pHealth;
+            playerHealth.text = " nullified " + pHealth.ToString();
+        }
         health = health - (eHealth + (2 * damageActive));
-        text.text = health.ToString() + " -" + eHealth.ToString();
-        playerHealth.text = " -" + pHealth.ToString();
+        text.text = health.ToString() + "  -" + (eHealth + 2 * damageActive).ToString();
         inter.playerHealthBar();
         enemyHealthBar();
     }
     void damageBuffStart(){
-        Debug.Log("damage+ buff active");
         damageActive = 1;
         buff = 2;
     }
@@ -53,6 +59,11 @@ public class enemyScript : MonoBehaviour
 
         if (inter.value > 0){
             random = Random.Range(1,4);
+            if(rerollActive > 0){
+                random = Random.Range(2,4);
+                rerollActive--;
+                Debug.Log("Rock rerolled and " + rerollActive + " left");
+            }
             string result = (inter.value, random) switch
             {
                 (1, 3) or (2, 1) or (3, 2) => "win",
@@ -73,9 +84,7 @@ public class enemyScript : MonoBehaviour
             }
             if (damageActive == 1 && buff > 0){
                 buff--;
-                Debug.Log("Damage buff counter = " + buff);
             } else {
-                Debug.Log("Damage Disabled");
                 damageActive = 0;
             }
 
@@ -86,13 +95,20 @@ public class enemyScript : MonoBehaviour
                 int result2 = (combo[0], combo[1], combo[2]) switch {
                     (1,2,1) => 1, // Damage buff
                     (2,2,3) => 2, // Reroll rock
-                    (2,1,3) => 3,
+                    (2,1,3) => 3, // Temp health
                     _ => 0
                 }; 
                 Debug.Log(result2);
                 if (result2 == 1 && damageActive != 1){
                     damageBuffStart();
+                    Debug.Log("Damage Buff Activated");
                     counter = 0;
+                } else if (result2 == 2 && rerollActive < 1) {
+                    rerollActive = 2;
+                    Debug.Log("Rock Removal Activated");
+                } else if (result2 == 3 && tempHealth < 1){
+                    tempHealth = Random.Range(4,6);
+                    Debug.Log(tempHealth + " tempHealth added");
                 } else {
                     counter = 0;
                 }
