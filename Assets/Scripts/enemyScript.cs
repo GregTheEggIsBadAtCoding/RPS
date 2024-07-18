@@ -68,7 +68,9 @@ public class enemyScript : MonoBehaviour
             return comboChoice[choice-1];
         }
     }
-    void healthChange(int eHealth, int pHealth){
+    void healthChange(int eHealth, int pHealth)
+    {
+        //displays the player health with markers of how much was lost each round
         if (tempHealth < 1){
             inter.health = inter.health - pHealth;
             playerHealth.text = " -" + pHealth.ToString();
@@ -78,6 +80,8 @@ public class enemyScript : MonoBehaviour
         }
         health = health - (eHealth + (2 * damageActive));
         text.text = health.ToString() + "  -" + (eHealth + 2 * damageActive).ToString();
+        
+        //change the health bars accordingly
         inter.playerHealthBar();
         enemyHealthBar();
     }
@@ -89,13 +93,16 @@ public class enemyScript : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        //makes sure that the game doesnt continue past 0 health
         if (health <= 0)
         {
             SceneManager.LoadScene("EndScene");
         }
     }
+
     public void enemyAttack() {
 
+        //picks an attack based on enemyDecision 
         if (inter.value > 0) {
             random = enemyDecision();
             if (rerollActive > 0) {
@@ -104,7 +111,8 @@ public class enemyScript : MonoBehaviour
                 Debug.Log("Rock rerolled and " + rerollActive + " left");
             }
         }
-
+        
+        //and switches the sprite accordingly
         switch (random)
         {
             case 1:
@@ -119,6 +127,8 @@ public class enemyScript : MonoBehaviour
         }
     }
     public void roundResult() {
+            
+            //determines the result of the round
             string result = (inter.value, random) switch
             {
                 (1, 3) or (2, 1) or (3, 2) => "win",
@@ -127,8 +137,10 @@ public class enemyScript : MonoBehaviour
                 _ => "default case because I hate yellow squiggly lines"
             };
 
+            //changes Player and enemy sprites accordingly
             inter.changePlayerSpriteResult(inter.value, random, result);
 
+            //changes Player and Enemy health accordingly
             Debug.Log("Player picked " + inter.value + " and AI picked " + random + " the result is a " + result);
             if (result == "win"){
                 healthChange(3,1);
@@ -137,6 +149,8 @@ public class enemyScript : MonoBehaviour
             } else {
                 healthChange(2,2);
             }
+
+            // modifies damage buff as needed
             if (damageActive == 1 && buff > 0){
                 buff--;
             } else {
