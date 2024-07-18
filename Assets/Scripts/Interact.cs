@@ -87,16 +87,17 @@ public class Interact : MonoBehaviour
                 {
                     case (1,2):
                         //enemy Paper beats player Rock
-                        
+                        enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[11];
                         spriteRenderer.sprite = spriteSheet[1];
                         break;
                     case (2,3):
                         //enemy Scissors beats player Paper
+                        enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[11];
                         spriteRenderer.sprite = spriteSheet[0];
                         break;
                     case (3,1):
                         //enemy Rock beats player Scissors
-                        enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[4];
+                        enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[11];
                         spriteRenderer.sprite = spriteSheet[2];
                         break;
                 }
@@ -111,8 +112,11 @@ public class Interact : MonoBehaviour
     IEnumerator Waiting()
     {
         Debug.Log("waiting");
-        yield return new WaitForSeconds(1f);
         enemy.enemyAttack();
+
+        yield return new WaitForSeconds(1f);
+
+        enemy.roundResult();
     }
 
 }

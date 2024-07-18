@@ -1339,6 +1339,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1bf9099b3a8a7ab4999592012ef98fab, type: 3}
   - {fileID: 21300000, guid: 5ca96bbf8d537e1438ef41198f9f7282, type: 3}
   - {fileID: 21300000, guid: a97b490475963404e84cf59bdaf85299, type: 3}
+  - {fileID: 21300000, guid: 15aeb223306e3d248b4a821838fd1a10, type: 3}
+  - {fileID: 21300000, guid: 55ad08ef93230494591d667cde8cc122, type: 3}
+  - {fileID: 21300000, guid: a97b490475963404e84cf59bdaf85299, type: 3}
+  - {fileID: 21300000, guid: d8889db4ea673d143a1f4c2ad39a173d, type: 3}
+  - {fileID: 21300000, guid: 67d61838a5740c64ab0e70401a86a073, type: 3}
+  - {fileID: 21300000, guid: 0afe718394abfc9458e8abcd618fc23d, type: 3}
+  - {fileID: 21300000, guid: 056fb43749c548846bbe64ab47fe6deb, type: 3}
 --- !u!212 &1583773587
 SpriteRenderer:
   m_ObjectHideFlags: 0
