@@ -94,15 +94,31 @@ public class enemyScript : MonoBehaviour
             SceneManager.LoadScene("EndScene");
         }
     }
-    public void enemyAttack(){
+    public void enemyAttack() {
 
-        if (inter.value > 0){
+        if (inter.value > 0) {
             random = enemyDecision();
-            if(rerollActive > 0){
-                random = Random.Range(2,4);
+            if (rerollActive > 0) {
+                random = Random.Range(2, 4);
                 rerollActive--;
                 Debug.Log("Rock rerolled and " + rerollActive + " left");
             }
+        }
+
+        switch (random)
+        {
+            case 1:
+                GetComponent<SpriteRenderer>().sprite = enemySprites[4];
+                break;
+            case 2:
+                GetComponent<SpriteRenderer>().sprite = enemySprites[6];
+                break;
+            case 3:
+                GetComponent<SpriteRenderer>().sprite = enemySprites[9];
+                break;
+        }
+    }
+    public void roundResult() {
             string result = (inter.value, random) switch
             {
                 (1, 3) or (2, 1) or (3, 2) => "win",
@@ -157,4 +173,4 @@ public class enemyScript : MonoBehaviour
             inter.value = 0;
         }
     }
-}
+
