@@ -1970,7 +1970,9 @@ MonoBehaviour:
   inter: {fileID: 1943020827}
   healthBar: {fileID: 516222156}
   combo: 000000000000000000000000
+  enemyCombo: 000000000000000000000000
   health: 30
+  enemyRerollActive: 0
   text: {fileID: 736216842}
   playerHealth: {fileID: 1498932938}
   countdown: {fileID: 8300000, guid: bac35a71d18abdc4e9ddb3c285f02892, type: 3}
@@ -1987,6 +1989,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 67d61838a5740c64ab0e70401a86a073, type: 3}
   - {fileID: 21300000, guid: 0afe718394abfc9458e8abcd618fc23d, type: 3}
   - {fileID: 21300000, guid: 056fb43749c548846bbe64ab47fe6deb, type: 3}
+  - {fileID: 21300000, guid: e9b9f2de921dad5429a1d2b6204f78f5, type: 3}
+  - {fileID: 21300000, guid: f146d1bfdd4d0da4a9ebeed19b1b0f2f, type: 3}
+  - {fileID: 21300000, guid: 06ffb568e832336478e120e401e94a34, type: 3}
 --- !u!212 &1583773587
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2499,6 +2504,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7a26de03c52e6b34b809b29adfff16b1, type: 3}
   - {fileID: 21300000, guid: 15f2a3d145aa3564dba169fe6b1149e7, type: 3}
   - {fileID: 21300000, guid: 246ce59a2cc101d4e91382b7e6c34b3d, type: 3}
+  - {fileID: 21300000, guid: ffed1e900312d5143abca6f7f9b99080, type: 3}
   Hero: {fileID: 823953106}
   rockAttack: {fileID: 8300000, guid: e0974897a1d34cd4b802e79f78549b06, type: 3}
   paperAttack: {fileID: 8300000, guid: c186efcd226676d46a0b67e1ea49ca0c, type: 3}
