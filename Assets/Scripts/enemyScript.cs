@@ -7,13 +7,21 @@ public class enemyScript : MonoBehaviour
 {
     [SerializeField] Interact inter;
     [SerializeField] Image healthBar;
+    
+    //Attack choices
     int random;
     public int[] combo = new int[3];
     public int[] enemyCombo = new int[3];
     int[] comboChoice = new int[3];
-    public int health;
+    int comboDecision = 0;
+    int choice = 0;
     int counter = 0;
     int Ecounter = 0;
+
+    //Enemy health
+    public int health;
+
+    //Enemy buff
     int enemyDamageActive = 0;
     int enemyBuff = 0;
     public int enemyRerollActive = 0;
@@ -22,8 +30,8 @@ public class enemyScript : MonoBehaviour
     int buff = 0;
     int damageActive = 0;
     int rerollActive = 0;
-    int comboDecision = 0;
-    int choice = 0;
+
+    //Access external objects
     [SerializeField] Text text;
     [SerializeField] Text playerHealth;
     [SerializeField] AudioClip countdown;
@@ -113,9 +121,7 @@ public class enemyScript : MonoBehaviour
         if (health <= 0)
         {
             text.text = "0";
-            StartCoroutine(Waiting());
-
-            
+            StartCoroutine(Waiting());            
         }
     }
 
@@ -193,55 +199,56 @@ public class enemyScript : MonoBehaviour
 
        //changes Player and Enemy health accordingly
         Debug.Log("Player picked " + inter.value + " and AI picked " + random + " the result is a " + result);
-            if (result == "win"){
-                healthChange(3,1);
-            }  else if (result == "lose"){
-                healthChange(1,3);
-            } else {
-                healthChange(2,2);
-            }
-
-            // modifies damage buff as needed
-            if (damageActive == 1 && buff > 0){
-                buff--;
-            } else {
-                damageActive = 0;
-            }
-            if (enemyDamageActive == 1 && enemyBuff > 0){
-                enemyBuff--;
-            } else {
-                enemyDamageActive = 0;
-            }
-
-            combo[counter] = inter.value;
-            if (counter == 2){
-                int result2 = (combo[0], combo[1], combo[2]) switch {
-                    (1,2,1) => 1, // Damage buff
-                    (2,2,3) => 2, // Reroll rock
-                    (2,1,3) => 3, // Temp health
-                    _ => 0
-                }; 
-                Debug.Log(result2);
-                if (result2 == 1 && damageActive != 1){
-                    damageBuffStart();
-                    Debug.Log("Damage Buff Activated");
-                    counter = 0;
-                } else if (result2 == 2 && rerollActive < 1) {
-                    rerollActive = 1;
-                    Debug.Log("Rock Removal Activated");
-                    counter = 0;
-                } else if (result2 == 3 && tempHealth < 1){
-                    tempHealth = Random.Range(4,6);
-                    Debug.Log(tempHealth + " tempHealth added");
-                    counter = 0;
-                } else {
-                    counter = 0;
-                }
-            } else {
-                counter++;
-            }
-            inter.value = 0;
+        if (result == "win"){
+            healthChange(3,1);
+        }  else if (result == "lose"){
+            healthChange(1,3);
+        } else {
+            healthChange(2,2);
         }
+
+        // modifies damage buff as needed
+        if (damageActive == 1 && buff > 0){
+            buff--;
+        } else {
+            damageActive = 0;
+        }
+        if (enemyDamageActive == 1 && enemyBuff > 0){
+            enemyBuff--;
+        } else {
+            enemyDamageActive = 0;
+        }
+
+        //Manages the buff
+        combo[counter] = inter.value;
+        if (counter == 2){
+            int result2 = (combo[0], combo[1], combo[2]) switch {
+                (1,2,1) => 1, // Damage buff
+                (2,2,3) => 2, // Reroll rock
+                (2,1,3) => 3, // Temp health
+                _ => 0
+            }; 
+            Debug.Log(result2);
+            if (result2 == 1 && damageActive != 1){
+                damageBuffStart();
+                Debug.Log("Damage Buff Activated");
+                counter = 0;
+            } else if (result2 == 2 && rerollActive < 1) {
+                rerollActive = 1;
+                Debug.Log("Rock Removal Activated");
+                counter = 0;
+            } else if (result2 == 3 && tempHealth < 1){
+                tempHealth = Random.Range(4,6);
+                Debug.Log(tempHealth + " tempHealth added");
+                counter = 0;
+            } else {
+                counter = 0;
+            }
+        } else {
+            counter++;
+        }
+        inter.value = 0;
+    }
 
     IEnumerator playCountdown()
     {

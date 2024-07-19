@@ -129,8 +129,22 @@ public class Interact : MonoBehaviour
                 }
                 break;
             default:
-                enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[0];
-                spriteRenderer.sprite = spriteSheet[3];
+                spriteRenderer.sprite = spriteSheet[11];
+                switch (playerAttack)
+                {
+                    case 1:
+                        //Player Rock ties with enemy Rock
+                        enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[13];
+                        break;
+                    case 2:
+                        //Player paper ties with enenmy Paper
+                        enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[12];
+                        break;
+                    case 3:
+                    //Player scissors ties with enemy scissors
+                        enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[14];
+                        break;
+                }                
                 break;
         }
     }
