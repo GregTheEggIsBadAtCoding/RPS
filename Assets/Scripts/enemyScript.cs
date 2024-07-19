@@ -7,6 +7,7 @@ public class enemyScript : MonoBehaviour
 {
     [SerializeField] Interact inter;
     [SerializeField] Image healthBar;
+    [SerializeField] GameObject RPS;
     
     //Attack choices
     int random;
@@ -252,8 +253,10 @@ public class enemyScript : MonoBehaviour
 
     IEnumerator playCountdown()
     {
+        RPS.SetActive(true);
         AudioSource.PlayClipAtPoint(countdown, Camera.main.transform.position);
         yield return new WaitForSeconds(3.6f);
+        RPS.SetActive(false);
         enemyAttack();
         yield return new WaitForSeconds(0.5f);
         roundResultparttwo();
