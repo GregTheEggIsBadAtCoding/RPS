@@ -81,6 +81,7 @@ public class Interact : MonoBehaviour
         switch (result)
         {
             case ("win"):
+                AudioSource.PlayClipAtPoint(Success, Camera.main.transform.position, 0.75f);
                 spriteRenderer.sprite = spriteSheet[7];
                 switch (playerAttack, enemyAttack)
                 {
@@ -103,6 +104,7 @@ public class Interact : MonoBehaviour
                 }
                 break;
             case ("lose"):
+                AudioSource.PlayClipAtPoint(FailSound, Camera.main.transform.position, 0.75f);
                 switch (playerAttack, enemyAttack)
                 {
                     case (1,2):
