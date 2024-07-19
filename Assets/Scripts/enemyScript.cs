@@ -89,17 +89,13 @@ public class enemyScript : MonoBehaviour
         //displays the player health with markers of how much was lost each round
         if (tempHealth < 1){
             inter.health = inter.health - (pHealth + (2*enemyDamageActive));
-            playerHealth.text = " -" + (pHealth+(2*enemyDamageActive)).ToString();
         } else {
             tempHealth = tempHealth - (pHealth + (2*enemyDamageActive));
-            playerHealth.text = " nullified " + pHealth+(2*enemyDamageActive).ToString();
         }
         if (enemyTempHealth < 1){
-            health = health - (eHealth + (2 * damageActive));
-            text.text = health.ToString() + "  -" + (eHealth + 2 * damageActive).ToString();
+            health = health - (eHealth + (2*damageActive));
         } else {
             enemyTempHealth = enemyTempHealth - (eHealth + (2 * damageActive));
-            text.text = health.ToString() + "  nullified " + (eHealth + 2 * damageActive).ToString();
         }
         
         //change the health bars accordingly
