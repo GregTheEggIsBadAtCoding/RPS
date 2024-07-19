@@ -43,7 +43,8 @@ public class Interact : MonoBehaviour
     public void RPS(int valueChange){
         value = valueChange;
         changePlayerSpriteAttack(value);
-        StartCoroutine(Waiting());
+        enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[0];
+        enemy.roundResult();
     }
 
     public void playerHealthBar(){
@@ -128,14 +129,6 @@ public class Interact : MonoBehaviour
         }
     }
 
-    IEnumerator Waiting()
-    {
-        Debug.Log("waiting");
-        enemy.enemyAttack();
 
-        yield return new WaitForSeconds(1f);
-
-        enemy.roundResult();
-    }
 
 }

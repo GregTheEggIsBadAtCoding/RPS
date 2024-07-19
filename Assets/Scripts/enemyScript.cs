@@ -20,6 +20,7 @@ public class enemyScript : MonoBehaviour
     int choice = 0;
     [SerializeField] Text text;
     [SerializeField] Text playerHealth;
+    [SerializeField] AudioClip countdown;
 
     //sprite stuff
     public Sprite[] enemySprites;
@@ -96,7 +97,10 @@ public class enemyScript : MonoBehaviour
         //makes sure that the game doesnt continue past 0 health
         if (health <= 0)
         {
-            SceneManager.LoadScene("EndScene");
+            text.text = "0";
+            StartCoroutine(Waiting());
+
+            
         }
     }
 
@@ -127,21 +131,26 @@ public class enemyScript : MonoBehaviour
         }
     }
     public void roundResult() {
-            
-            //determines the result of the round
-            string result = (inter.value, random) switch
-            {
-                (1, 3) or (2, 1) or (3, 2) => "win",
-                (1, 2) or (2, 3) or (3, 1) => "lose",
-                (1, 1) or (2, 2) or (3, 3) => "tie",
-                _ => "default case because I hate yellow squiggly lines"
-            };
 
-            //changes Player and enemy sprites accordingly
-            inter.changePlayerSpriteResult(inter.value, random, result);
+        //Calls an IEnumator that plays the count down sound and waits a few seconds before showing the results
+        StartCoroutine(playCountdown());
+    }
 
-            //changes Player and Enemy health accordingly
-            Debug.Log("Player picked " + inter.value + " and AI picked " + random + " the result is a " + result);
+    public void roundResultparttwo() {
+        //determines the result of the round
+        string result = (inter.value, random) switch
+        {
+            (1, 3) or (2, 1) or (3, 2) => "win",
+            (1, 2) or (2, 3) or (3, 1) => "lose",
+            (1, 1) or (2, 2) or (3, 3) => "tie",
+            _ => "default case because I hate yellow squiggly lines"
+        };
+
+        //changes Player and enemy sprites accordingly
+        inter.changePlayerSpriteResult(inter.value, random, result);
+
+       //changes Player and Enemy health accordingly
+        Debug.Log("Player picked " + inter.value + " and AI picked " + random + " the result is a " + result);
             if (result == "win"){
                 healthChange(3,1);
             }  else if (result == "lose"){
@@ -186,5 +195,24 @@ public class enemyScript : MonoBehaviour
             }
             inter.value = 0;
         }
+
+    IEnumerator playCountdown()
+    {
+        AudioSource.PlayClipAtPoint(countdown, Camera.main.transform.position);
+        yield return new WaitForSeconds(3.6f);
+        enemyAttack();
+        yield return new WaitForSeconds(0.5f);
+        roundResultparttwo();
     }
+    IEnumerator Waiting()
+    {
+        Debug.Log("waiting");
+
+
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("EndScene");
+
+
+    }
+}
 
