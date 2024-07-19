@@ -97,6 +97,11 @@ public class enemyScript : MonoBehaviour
         } else {
             enemyTempHealth = enemyTempHealth - (eHealth + (2 * damageActive));
         }
+        if (inter.health <= 0){
+            SceneManager.LoadScene("StartMenu");
+        } else if (health <= 0){
+            SceneManager.LoadScene("EndScene");
+        }
         
         //change the health bars accordingly
         inter.playerHealthBar();
