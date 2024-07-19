@@ -100,7 +100,7 @@ public class enemyScript : MonoBehaviour
         if (inter.health <= 0){
             SceneManager.LoadScene("StartMenu");
         } else if (health <= 0){
-            SceneManager.LoadScene("EndScene");
+            SceneManager.LoadScene("LoseScene");
         }
         
         //change the health bars accordingly
