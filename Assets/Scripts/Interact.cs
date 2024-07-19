@@ -31,6 +31,10 @@ public class Interact : MonoBehaviour
     }
     public void RPS(int valueChange){
         value = valueChange;
+        if (enemy.enemyRerollActive > 0){
+            value = Random.Range(2,4);
+            enemy.enemyRerollActive--;
+        }
         changePlayerSpriteAttack(value);
         StartCoroutine(Waiting());
     }
