@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Exposition.unity
     guid: 17d8c52a6e84c4f42bd1e1f742f36eae
+  - enabled: 1
+    path: Assets/Scenes/LoseScene.unity
+    guid: 6f3debaafb728f948b65dda68f19bb90
   m_configObjects: {}
