@@ -35,7 +35,7 @@ public class Interact : MonoBehaviour
         spriteRenderer = Hero.GetComponent<SpriteRenderer>();
     }
     void Update(){
-        text.text = health.ToString();
+        //text.text = health.ToString();
         if (health <= 0){
             SceneManager.LoadScene("StartMenu");
         }
@@ -87,7 +87,7 @@ public class Interact : MonoBehaviour
                 {
                     //Player Rock beats enemy Scissors
                     case (1, 3):
-                        AudioSource.PlayClipAtPoint(rockAttack, Camera.main.transform.position, 0.85f);
+                        AudioSource.PlayClipAtPoint(rockAttack, Camera.main.transform.position, 0.8f);
                         enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[3];
                         
                         break;
@@ -123,7 +123,7 @@ public class Interact : MonoBehaviour
                     case (3,1):
                         //enemy Rock beats player Scissors
                         enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[11];
-                        AudioSource.PlayClipAtPoint(rockAttack, Camera.main.transform.position, 0.85f);
+                        AudioSource.PlayClipAtPoint(rockAttack, Camera.main.transform.position, 0.8f);
                         spriteRenderer.sprite = spriteSheet[2];
                         break;
                 }
