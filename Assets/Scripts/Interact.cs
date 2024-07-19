@@ -19,6 +19,17 @@ public class Interact : MonoBehaviour
     [SerializeField] GameObject Hero;
     SpriteRenderer spriteRenderer;
 
+    //Audio stuff
+    [SerializeField] AudioClip rockAttack;
+    [SerializeField] AudioClip paperAttack;
+    [SerializeField] AudioClip scissorAttack;
+    [SerializeField] AudioClip Success;
+    [SerializeField] AudioClip FailSound;
+    [SerializeField] AudioClip ScannerCombo;
+    [SerializeField] AudioClip HealCombo;
+    [SerializeField] AudioClip Countdown;
+    [SerializeField] AudioClip ShieldCombo;
+
     private void Start()
     {
         spriteRenderer = Hero.GetComponent<SpriteRenderer>();
@@ -70,14 +81,18 @@ public class Interact : MonoBehaviour
                 {
                     //Player Rock beats enemy Scissors
                     case (1, 3):
+                        AudioSource.PlayClipAtPoint(rockAttack, Camera.main.transform.position);
                         enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[3];
+                        
                         break;
                     //Player Paper beats enemy Rock
                     case (2, 1):
+                        AudioSource.PlayClipAtPoint(paperAttack, Camera.main.transform.position);
                         enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[2];
                         break;
                     //Player Scissors beats enemy Paper
                     case (3, 2):
+                        AudioSource.PlayClipAtPoint(scissorAttack, Camera.main.transform.position);
                         enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[1];
                         break;
                 }
@@ -87,17 +102,21 @@ public class Interact : MonoBehaviour
                 {
                     case (1,2):
                         //enemy Paper beats player Rock
+
                         enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[11];
+                        AudioSource.PlayClipAtPoint(paperAttack, Camera.main.transform.position);
                         spriteRenderer.sprite = spriteSheet[1];
                         break;
                     case (2,3):
                         //enemy Scissors beats player Paper
                         enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[11];
+                        AudioSource.PlayClipAtPoint(scissorAttack, Camera.main.transform.position);
                         spriteRenderer.sprite = spriteSheet[0];
                         break;
                     case (3,1):
                         //enemy Rock beats player Scissors
                         enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[11];
+                        AudioSource.PlayClipAtPoint(rockAttack, Camera.main.transform.position);
                         spriteRenderer.sprite = spriteSheet[2];
                         break;
                 }
