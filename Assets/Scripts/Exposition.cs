@@ -14,9 +14,10 @@ public class Exposition : MonoBehaviour
     }
     public void expoNext(){
         string result = progress switch{
-            0 => "After ten years of non-stop fighting, a new group rose to power called the Cybernetic Collective. They swiftly took control over Chronobridge and imposed new laws and new ways of enforcing them. This included the ban of any civilian fighting whatsoever. With no way to make a profit, and therefore losing much of their power, gangs turned to the only other way they knew how to establish power over one another:",
-            1 => "A classic game of...",
-            2 => null
+            0 => "After ten years of non-stop fighting, a new group rose to power called the Cybernetic Collective. They swiftly took control over Chronobridge and imposed new laws and new ways of enforcing them.",
+            1 => "This included the ban of any civilian fighting whatsoever. With no way to make a profit, and therefore losing much of their power, gangs turned to the only other way they knew how to establish power over one another:",
+            2 => "A classic game of...",
+            3 => null
         } ;
         if (result != null){
             progress++;
