@@ -42,7 +42,7 @@ public class enemyScript : MonoBehaviour
     void Start()
     {
         // This is just for grabbing variables from the Interact script
-        text.text = health.ToString();
+        //text.text = health.ToString();
         
     }
     void enemyHealthBar(){
