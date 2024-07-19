@@ -767,20 +767,20 @@ MonoBehaviour:
     activate combos. The activatable combos are:
 
 
-    Rock, Paper, Rock: Which activates
+    Rock, Paper, Rock: Activates
     a damage boost.
 
-    Paper, Paper, Rock: Which deactivates the opponents usage
-    of rock
+    Paper, Paper, Rock: Deactivates the opponents usage of rock
 
-    Paper, Rock, Scissors: Which gives you a random amount of temporary
-    health
+    Paper,
+    Rock, Scissors: Gives a random amount of temporary health
 
 
-    Whilst these abilities are strong, the enemy can activate them as
-    well.
+    Whilst these
+    abilities are strong, the enemy can activate them as well.
 
-    Therefore, you must strategize in order to attempt to beat your enemies.'
+    Therefore, you
+    must strategize in order to attempt to beat your enemies.'
 --- !u!222 &2145449553
 CanvasRenderer:
   m_ObjectHideFlags: 0
