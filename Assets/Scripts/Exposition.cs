@@ -10,6 +10,7 @@ public class Exposition : MonoBehaviour
     [SerializeField] GameObject banana;
     [SerializeField] GameObject sceneChange;
     int progress = 0;
+    
     void Start()
     {
         text.text = "After Chronobridge’s rise in biotechnology, many gangs rose to power with enhanced abilities and weaponry. They profited off of fighting rings and whenever a gang member came across someone from another gang, an all-out gang war would start. Violence was at an all-time high, and it seemed there would be no end to it.";
