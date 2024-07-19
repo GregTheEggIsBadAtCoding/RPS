@@ -7,6 +7,8 @@ public class Exposition : MonoBehaviour
 {
     [SerializeField] Text text;
     [SerializeField] GameObject RPS;
+    [SerializeField] GameObject banana;
+    [SerializeField] GameObject sceneChange;
     int progress = 0;
     void Start()
     {
@@ -24,6 +26,8 @@ public class Exposition : MonoBehaviour
             text.text = result;
         } else {
             RPS.SetActive(true);
+            banana.SetActive(true);
+            sceneChange.SetActive(false);
         }
     }
     void Update()

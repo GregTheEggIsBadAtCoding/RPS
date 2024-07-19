@@ -42,7 +42,7 @@ public class enemyScript : MonoBehaviour
     void Start()
     {
         // This is just for grabbing variables from the Interact script
-        text.text = health.ToString();
+        //text.text = health.ToString();
         
     }
     void enemyHealthBar(){
@@ -98,9 +98,9 @@ public class enemyScript : MonoBehaviour
             enemyTempHealth = enemyTempHealth - (eHealth + (2 * damageActive));
         }
         if (inter.health <= 0){
-            SceneManager.LoadScene("StartMenu");
+            SceneManager.LoadScene("LoseMenu");
         } else if (health <= 0){
-            SceneManager.LoadScene("LoseScene");
+            SceneManager.LoadScene("EndScene");
         }
         
         //change the health bars accordingly
