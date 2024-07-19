@@ -134,7 +134,7 @@ public class enemyScript : MonoBehaviour
                 random = Random.Range(2, 4);
                 rerollActive--;
                 Debug.Log("Rock rerolled and " + rerollActive + " left");
-            }
+            } rerollActive--;
             Debug.Log(random);
             enemyCombo[Ecounter] = random;
             if (Ecounter == 2){
