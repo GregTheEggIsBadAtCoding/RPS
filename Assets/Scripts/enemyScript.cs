@@ -98,7 +98,7 @@ public class enemyScript : MonoBehaviour
             enemyTempHealth = enemyTempHealth - (eHealth + (2 * damageActive));
         }
         if (inter.health <= 0){
-            SceneManager.LoadScene("LoseMenu");
+            SceneManager.LoadScene("LoseScene");
         } else if (health <= 0){
             SceneManager.LoadScene("EndScene");
         }
