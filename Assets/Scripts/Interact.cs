@@ -81,12 +81,13 @@ public class Interact : MonoBehaviour
         switch (result)
         {
             case ("win"):
+                AudioSource.PlayClipAtPoint(Success, Camera.main.transform.position, 0.75f);
                 spriteRenderer.sprite = spriteSheet[7];
                 switch (playerAttack, enemyAttack)
                 {
                     //Player Rock beats enemy Scissors
                     case (1, 3):
-                        AudioSource.PlayClipAtPoint(rockAttack, Camera.main.transform.position);
+                        AudioSource.PlayClipAtPoint(rockAttack, Camera.main.transform.position, 0.85f);
                         enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[3];
                         
                         break;
@@ -103,6 +104,7 @@ public class Interact : MonoBehaviour
                 }
                 break;
             case ("lose"):
+                AudioSource.PlayClipAtPoint(FailSound, Camera.main.transform.position, 0.75f);
                 switch (playerAttack, enemyAttack)
                 {
                     case (1,2):
@@ -121,7 +123,7 @@ public class Interact : MonoBehaviour
                     case (3,1):
                         //enemy Rock beats player Scissors
                         enemy.GetComponent<SpriteRenderer>().sprite = enemy.enemySprites[11];
-                        AudioSource.PlayClipAtPoint(rockAttack, Camera.main.transform.position);
+                        AudioSource.PlayClipAtPoint(rockAttack, Camera.main.transform.position, 0.85f);
                         spriteRenderer.sprite = spriteSheet[2];
                         break;
                 }
